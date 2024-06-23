@@ -10,6 +10,15 @@
   background-size: cover;
 }
 
+::-webkit-scrollbar{
+  width: 0px;
+}
+::-webkit-scrollbar-thumb{
+  background: rgba(rgb(232, 201, 27), rgba(189, 189, 32, 0.91), blue, alpha);
+}
 
+::-webkit-scrollbar-thumb:hover{
+  background: #555
+}
 
 
