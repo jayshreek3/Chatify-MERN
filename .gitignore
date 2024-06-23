@@ -1,0 +1,21 @@
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# IDE/editor configuration
+.vscode/
+.idea/
+.sublime-project
+
+# Temporary/generated files
+.tmp/*
+generated/
+*.log
+
+# Dependency files (usually managed by package.json)
+package-lock.json
+
+# Specific files or directories
+README.md.bak  # Ignore a specific backup file
+logs/  # Ignore the entire logs directory
