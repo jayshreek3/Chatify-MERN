@@ -3,6 +3,7 @@ import { ChatState } from "../Context/ChatProvider";
 import SearchBox from "../components/Miscellaneous/SearchBox";
 import MyChats from "../components/MyChats";
 import ChatBox from "../components/ChatBox";
+import { useState } from "react";
 
 const ChatPage = () => {
   // const [chats, setChats] = useState([]);
@@ -23,6 +24,7 @@ const ChatPage = () => {
 
   // }, []); // Empty dependency array means this effect runs once on component mount
   const { user } = ChatState();
+  const [fetchAgain, setFetchAgain] = useState(false);
 
 
   return (

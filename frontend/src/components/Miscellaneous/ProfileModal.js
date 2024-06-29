@@ -27,11 +27,11 @@ const ProfileModal = ({ user, children }) => {
       <Modal size="lg" isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent h="300px">
-          <ModalHeader d="flex" 
+          <ModalHeader display="flex" 
             justifyContent="center">{user.name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody
-            d="flex"
+            display="flex"
             flexDir="column"
             alignItems="center"
             justifyContent="space-between"
