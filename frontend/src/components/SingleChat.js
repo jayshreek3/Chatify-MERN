@@ -41,7 +41,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </>
             ) : (
               <>
-                {selectedChat.chatName.toUpperCase()}
+                {selectedChat.chatName}
                 <UpdateGroupChatModal
                   // fetchMessages={fetchMessages}
                   fetchAgain={fetchAgain}
