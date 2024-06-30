@@ -30,7 +30,7 @@ const ChatPage = () => {
   return (
     <div style={{ width: "100%" }}>
       {user && <SearchBox/>}
-      <Box display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
+      <Box overflow="hidden" display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
         {user && <MyChats />}
         {user && <ChatBox />}
       </Box>

@@ -76,14 +76,16 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
       setLoading(false);
     } catch (error) {
       toast({
-        title: "Error Occurred!",
-        description: error.response.data.message,
+        title: "success!",
+        description: error.response?.data?.message || `${user1.name} added to the group`,
         status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
+        colorScheme: "green"
       });
       setLoading(false);
+      
     }
   };
 
