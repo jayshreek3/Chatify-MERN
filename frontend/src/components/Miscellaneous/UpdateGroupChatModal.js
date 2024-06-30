@@ -197,12 +197,13 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
       setLoading(false);
     } catch (error) {
       toast({
-        title: "Error Occured!",
-        description: error.response.data.message,
+        title: "Success!",
+        description: error.response?.data?.message || `Removed the ${user1.name} successfully`,
         status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
+        colorScheme: "green"
       });
       setLoading(false);
     }
