@@ -84,8 +84,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       socket.emit("Join Chat", selectedChat._id);
     } catch (error) {
       toast({
-        title: "An error Occured!",
-        description: "Failed to retrive the message",
+        title: "An error Occurred!",
+        description: "Failed to retrieve the message",
         status: "error",
         duration: 5000,
         isClosable: true,
