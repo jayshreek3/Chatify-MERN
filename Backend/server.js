@@ -45,11 +45,40 @@ io.on("connection", (socket) => {
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     // console.log(userData._id);
-    socket.emit("Connection");
+    socket.emit("connected");
   });
 
   socket.on("Join Chat", (room) => {
     socket.join(room);
     console.log("User joined the room: " + room);
+  });
+
+  socket.on('typing', (room)=>{
+    socket.in(room).emit('typing');
+  })
+
+  socket.on('stop typing', (room)=>{
+    socket.in(room).emit('stop typing');
+  })
+
+  socket.on("New message", (newMessageReceived) => {
+    var chat = newMessageReceived.chat;
+
+    if(!chat.users)
+      return console.log("Chat.users not defined");
+
+    //msgs to be emitted by all the grp members except the sender
+
+    chat.users.forEach(user => {
+      if(user._id == newMessageReceived.sender._id) return;
+
+      socket.in(user._id).emit("message received", newMessageReceived)
+      
+    });
+  })
+// for socket memory clean up
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    socket.leave(userData._id);
   });
 });

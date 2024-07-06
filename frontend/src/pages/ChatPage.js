@@ -23,16 +23,17 @@ const ChatPage = () => {
   //     fetchChats();
 
   // }, []); // Empty dependency array means this effect runs once on component mount
-  const { user } = ChatState();
   const [fetchAgain, setFetchAgain] = useState(false);
+  const { user } = ChatState();
+  
 
 
   return (
     <div style={{ width: "100%" }}>
       {user && <SearchBox/>}
       <Box overflow="hidden" display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
-        {user && <MyChats />}
-        {user && <ChatBox />}
+        {user && <MyChats fetchAgain={fetchAgain}/>}
+        {user && <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
       </Box>
     </div>
   );
