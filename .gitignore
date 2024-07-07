@@ -1,5 +1,9 @@
-# Build artifacts
+/node_modules
 node_modules/
+/frontend/node_modules/
+.env
+
+# Build artifacts
 dist/
 build/
 
