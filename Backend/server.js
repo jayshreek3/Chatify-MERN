@@ -27,6 +27,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://chatify-mern-5fao.onrender.com",
   "https://chatify-mern-5fao.onrender.com/api",
+  "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app/"
 ];
 
 const corsOptions = {
