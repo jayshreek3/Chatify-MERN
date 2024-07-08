@@ -60,7 +60,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
       setLoading(true);
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios.put(
@@ -100,7 +100,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
       setLoading(true);
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios.get(`${backendAPI.API_BASE_URL}/user?search=${search}`, config);
@@ -127,7 +127,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
       setRenameLoading(true);
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          authorization: `Bearer ${user.token}`,
         },
       };
       const response = await axios.put(
@@ -182,7 +182,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
       setLoading(true);
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios.put(

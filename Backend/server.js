@@ -22,6 +22,7 @@ connectDB();
 // CORS Configuration
 const allowedOrigins = [
   "*",
+  "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
   "https://chatify-io-ten.vercel.app",
   "http://localhost:3000",
   "https://chatify-mern-5fao.onrender.com",
