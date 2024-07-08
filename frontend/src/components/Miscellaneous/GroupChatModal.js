@@ -1,11 +1,9 @@
 import { Box, Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, useToast } from '@chakra-ui/react'
-import React from 'react'
 import axios from "axios";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserListItem from "../UserAvatar/UserListItem"
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
-import backendAPI from '../../backendAPI';
 const API_BASE_URL = process.env.API_BASE_URL;
 export const GroupChatModal = ({children}) => {
 

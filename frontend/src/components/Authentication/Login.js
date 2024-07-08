@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   VStack,
   StackDivider,
@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import backendAPI from '../../backendAPI';
 const API_BASE_URL = process.env.API_BASE_URL;
 const Login = () => {
 

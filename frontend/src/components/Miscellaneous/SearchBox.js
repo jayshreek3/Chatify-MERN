@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -29,7 +29,6 @@ import {
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
-import backendAPI from "../../backendAPI";
 const API_BASE_URL = process.env.API_BASE_URL;
 const SearchBox = () => {
   const [search, setSearch] = useState("");

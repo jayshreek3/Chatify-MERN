@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
 import { Box, IconButton, Spinner, Text, FormControl, Input, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -11,7 +11,6 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import Lottie from 'react-lottie'
 import animationData from '../images/typing-animation.json'
-import backendAPI from "../backendAPI";
 const ENDPOINT = "http://localhost:5000";
 const API_BASE_URL = process.env.API_BASE_URL;
 var socket, selectedChatCompare;

@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChatState } from "../Context/ChatProvider";
 import { useToast, Box, Button, Stack, Text} from "@chakra-ui/react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'; 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ChatLoading from "../components/ChatLoading";
 import { getSender } from "../config/ChatLogic";
 import { GroupChatModal } from "./Miscellaneous/GroupChatModal";
-import backendAPI from "../backendAPI";
 const API_BASE_URL = process.env.API_BASE_URL;
 const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
