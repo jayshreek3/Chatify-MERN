@@ -74,7 +74,7 @@ const fetchChats = expressAsyncHandler(async (req, res) => {
 // Create a Group Chat
 const createGroupChat = expressAsyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
-    return res.status(400).send({ message: "Please Fill all the feilds" });
+    return res.status(400).send({ message: "Please Fill all the fields" });
   }
 
   // take all users from FE to BE
