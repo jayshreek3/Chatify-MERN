@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   VStack,
-  Box,
   StackDivider,
   FormControl,
   Input,
@@ -9,7 +8,7 @@ import {
   InputGroup,
   InputRightElement,
   Button,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";

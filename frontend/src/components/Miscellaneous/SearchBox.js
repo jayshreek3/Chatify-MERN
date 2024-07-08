@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Center,
   Text,
   Tooltip,
   Flex,
@@ -13,7 +12,7 @@ import {
   useToast,
   Spinner,
 } from "@chakra-ui/react";
-import { Menu, MenuButton, MenuList, Avatar, BellIcon } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, Avatar } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../Context/ChatProvider";
 import ProfileModal from "./ProfileModal";

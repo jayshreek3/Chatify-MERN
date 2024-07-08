@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
-import {
-  Box,
-  IconButton,
-  Spacer,
-  Spinner,
-  Text,
-  FormControl,
-  Input,
-  Toast,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, IconButton, Spinner, Text, FormControl, Input, useToast } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./Miscellaneous/ProfileModal";
 import { getSender, getSenderFull } from "../config/ChatLogic";
