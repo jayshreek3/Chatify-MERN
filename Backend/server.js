@@ -27,7 +27,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://chatify-mern-5fao.onrender.com",
   "https://chatify-mern-5fao.onrender.com/api",
-  "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app/"
+  "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app",
 ];
 
 const corsOptions = {
@@ -41,12 +41,10 @@ const corsOptions = {
     return callback(null, true);
   },
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "authorization"],
 };
 
 app.use(cors(corsOptions));
-
-
 
 app.get("/", (req, res) => {
   res.send("Welcome to Chatify API"); // Example response
@@ -75,7 +73,13 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
 
   cors: {
-    origin: [allowedOrigins, "http://localhost:3000", "https://chatify-io-git-master-jayshree-s-projects.vercel.app", "https://chatify-io-ten.vercel.app", "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app"]
+    origin: [
+      allowedOrigins,
+      "http://localhost:3000",
+      "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
+      "https://chatify-io-ten.vercel.app",
+      "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app",
+    ],
   },
 });
 
