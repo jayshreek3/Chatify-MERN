@@ -10,7 +10,6 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
 
-
 // Load environment variables
 dotenv.config();
 
@@ -20,24 +19,29 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// Middleware
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg =
-          "The CORS policy for this site does not allow access from the specified Origin.";
-        return callback(new Error(msg), false);
-      }
+// CORS Configuration
+const allowedOrigins = [
+  "https://chatify-io-ten.vercel.app",
+  "http://localhost:3000",
+  "https://chatify-mern-5fao.onrender.com",
+  "https://chatify-mern-5fao.onrender.com/api",
+];
 
-      return callback(null, true);
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-app.use(express.json());
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg =
+        "The CORS policy for this site does not allow access from the specified Origin.";
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
 
 // Routes
 const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
@@ -59,25 +63,21 @@ const server = app.listen(
   PORT,
   console.log(`Server started on port ${PORT}`.blue.italic)
 );
+
 const io = require("socket.io")(server, {
-  pingTimeout: 60000, // closed the connection after 60s if any inactivity
+  pingTimeout: 60000,
 
   cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://chatify-mern-5fao.onrender.com",
-      "https://chatify-mern-5fao.onrender.com/api",
-    ],
+    origin: allowedOrigins,
   },
 });
 
 io.on("connection", (socket) => {
   console.log("Connected to Socket.io successfully!");
 
-  //create a new room w id of the userData
   socket.on("setup", (userData) => {
     socket.join(userData._id);
-    // console.log(userData._id);
+
     socket.emit("connected");
   });
 
@@ -98,8 +98,6 @@ io.on("connection", (socket) => {
     var chat = newMessageReceived.chat;
 
     if (!chat.users) return console.log("Chat.users not defined");
-
-    //msgs to be emitted by all the grp members except the sender
 
     chat.users.forEach((user) => {
       if (user._id == newMessageReceived.sender._id) return;
