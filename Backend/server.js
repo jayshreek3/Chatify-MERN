@@ -10,6 +10,7 @@ const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
 
+const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
 // const path = require('path')
 dotenv.config();
 
