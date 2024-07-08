@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import backendAPI from "../../backendAPI";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -135,7 +136,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        `${backendAPI.API_BASE_URL}/user`,
         { name, email, password, photo },
         config
       );

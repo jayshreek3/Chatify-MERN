@@ -7,6 +7,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ChatLoading from "../components/ChatLoading";
 import { getSender } from "../config/ChatLogic";
 import { GroupChatModal } from "./Miscellaneous/GroupChatModal";
+import backendAPI from "../backendAPI";
 
 const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
@@ -22,7 +23,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get("/api/chat", config);
+      const { data } = await axios.get(`${backendAPI.API_BASE_URL}/chat`, config);
       console.log(data);
       setChats(data);
     } catch (error) {

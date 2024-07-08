@@ -13,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import backendAPI from '../../backendAPI';
+
 const Login = () => {
 
   const [name, setName] = useState();
@@ -47,7 +49,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "/api/user/login",
+        `${backendAPI.API_BASE_URL}/user/login`,
         { email, password },
         config
       );

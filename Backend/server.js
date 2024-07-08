@@ -8,32 +8,36 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const path = require('path')
 
+// const path = require('path')
+const API_BASE_URL = "https://chatify-mern-5fao.onrender.com"
 dotenv.config();
 
 connectDB();
+const allowedOrigins = [
+  "*",];
+app.use(cors());
 
 app.use(express.json());
 
-app.use("/api/user", userRoutes);
-app.use("/api/chat", chatRoutes);
-app.use("/api/message", messageRoutes);
+app.use(`${API_BASE_URL}/api/user`, userRoutes);
+app.use(`${API_BASE_URL}/api/chat`, chatRoutes);
+app.use(`${API_BASE_URL}/api/message`, messageRoutes);
 
 
-const __dirname1 = path.resolve();
-if (process.env.NODE_ENV === 'production') {
+// const __dirname1 = path.resolve();
+// if (process.env.NODE_ENV === 'production') {
 
-  app.use(express.static(path.join(__dirname1, '/frontend/build')));
+//   app.use(express.static(path.join(__dirname1, '/frontend/build')));
   
-  app.get('*', (req, res) => { 
-    res.sendFile(path.resolve(__dirname1, 'frontend', 'build', 'index.html'));
-   });
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is working");
-  });
-}
+//   app.get('*', (req, res) => { 
+//     res.sendFile(path.resolve(__dirname1, 'frontend', 'build', 'index.html'));
+//    });
+// } else {
+//   app.get("/", (req, res) => {
+//     res.send("API is working");
+//   });
+// }
 
 app.use(notFound);
 app.use(errorHandler);
