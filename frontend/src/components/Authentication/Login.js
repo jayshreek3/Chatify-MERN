@@ -16,7 +16,6 @@ import backendAPI from '../../backendAPI';
 
 const Login = () => {
 
-  //const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
@@ -49,7 +48,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        `${backendAPI.API_BASE_URL}/user/login`,
+        `${backendAPI.API_BASE_URL}/api/user/login`,
         { email, password },
         config
       );
@@ -127,4 +126,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
