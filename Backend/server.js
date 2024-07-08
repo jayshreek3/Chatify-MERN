@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
 // app.use("/api/user", userRoutes);
 // app.use("/api/chat", chatRoutes);
 // app.use("/api/message", messageRoutes);
-Routes
+// Routes
 
 app.use(`${BASE_URL}/api/user`, userRoutes);
 app.use(`${BASE_URL}/api/chat`, chatRoutes);
