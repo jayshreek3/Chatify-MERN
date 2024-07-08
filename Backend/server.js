@@ -75,7 +75,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
 
   cors: {
-    origin: [allowedOrigins, "http://localhost:3000", "https://chatify-io-git-master-jayshree-s-projects.vercel.app", "https://chatify-io-ten.vercel.app"]
+    origin: [allowedOrigins, "http://localhost:3000", "https://chatify-io-git-master-jayshree-s-projects.vercel.app", "https://chatify-io-ten.vercel.app", "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app"]
   },
 });
 
