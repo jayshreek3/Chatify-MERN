@@ -16,7 +16,7 @@ import backendAPI from '../../backendAPI';
 
 const Login = () => {
 
-  const [name, setName] = useState();
+  //const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +27,7 @@ const Login = () => {
   const handleClickPassword = () => setShowPassword(!showPassword);
 
   const submitForm = async () => {
+    console.log("setLoading type:", typeof setLoading);
     setLoading(true);
     if (!email || !password) {
       toast({

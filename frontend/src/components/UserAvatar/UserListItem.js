@@ -1,6 +1,3 @@
-// files rel to user list item
-import React from 'react'
-import { ChatState } from '../../Context/ChatProvider'
 import { Avatar } from '@chakra-ui/react';
 import { Box, Text } from "@chakra-ui/layout";
 
