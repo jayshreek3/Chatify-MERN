@@ -8,36 +8,25 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-const cors = require('cors'); 
+const cors = require("cors");
 
 // const path = require('path')
 dotenv.config();
 
 connectDB();
 const allowedOrigins = [
-  "*",];
+  "*",
+  "http://localhost:3000",
+  "https://chatify-mern-5fao.onrender.com",
+  "https://chatify-mern-5fao.onrender.com/api",
+];
 app.use(cors());
 
 app.use(express.json());
 
-app.use('/api/user', userRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/message', messageRoutes);
-
-
-// const __dirname1 = path.resolve();
-// if (process.env.NODE_ENV === 'production') {
-
-//   app.use(express.static(path.join(__dirname1, '/frontend/build')));
-  
-//   app.get('*', (req, res) => { 
-//     res.sendFile(path.resolve(__dirname1, 'frontend', 'build', 'index.html'));
-//    });
-// } else {
-//   app.get("/", (req, res) => {
-//     res.send("API is working");
-//   });
-// }
+app.use(`${BASE_URL}/user`, userRoutes);
+app.use(`${BASE_URL}/chat`, chatRoutes);
+app.use(`${BASE_URL}/message`, messageRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
@@ -51,7 +40,13 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000, // closed the connection after 60s if any inactivity
 
-  cors: { origin: "http://localhost:3000" },
+  cors: {
+    origin: [
+      "http://localhost:3000",
+      "https://chatify-mern-5fao.onrender.com",
+      "https://chatify-mern-5fao.onrender.com/api",
+    ],
+  },
 });
 
 io.on("connection", (socket) => {
@@ -69,30 +64,28 @@ io.on("connection", (socket) => {
     console.log("User joined the room: " + room);
   });
 
-  socket.on('typing', (room)=>{
-    socket.in(room).emit('typing');
-  })
+  socket.on("typing", (room) => {
+    socket.in(room).emit("typing");
+  });
 
-  socket.on('stop typing', (room)=>{
-    socket.in(room).emit('stop typing');
-  })
+  socket.on("stop typing", (room) => {
+    socket.in(room).emit("stop typing");
+  });
 
   socket.on("New message", (newMessageReceived) => {
     var chat = newMessageReceived.chat;
 
-    if(!chat.users)
-      return console.log("Chat.users not defined");
+    if (!chat.users) return console.log("Chat.users not defined");
 
     //msgs to be emitted by all the grp members except the sender
 
-    chat.users.forEach(user => {
-      if(user._id == newMessageReceived.sender._id) return;
+    chat.users.forEach((user) => {
+      if (user._id == newMessageReceived.sender._id) return;
 
-      socket.in(user._id).emit("message received", newMessageReceived)
-      
+      socket.in(user._id).emit("message received", newMessageReceived);
     });
-  })
-// for socket memory clean up
+  });
+  // for socket memory clean up
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
     socket.leave(userData._id);
