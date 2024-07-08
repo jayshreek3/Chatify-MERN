@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import backendAPI from '../../backendAPI';
-
+const API_BASE_URL = process.env.API_BASE_URL;
 const Login = () => {
 
   const [email, setEmail] = useState();
@@ -48,7 +48,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        `${backendAPI.API_BASE_URL}/user/login`,
+        `${API_BASE_URL}/api/user/login`,
         { email, password },
         config
       );

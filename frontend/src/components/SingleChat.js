@@ -13,6 +13,7 @@ import Lottie from 'react-lottie'
 import animationData from '../images/typing-animation.json'
 import backendAPI from "../backendAPI";
 const ENDPOINT = "http://localhost:5000";
+const API_BASE_URL = process.env.API_BASE_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -58,7 +59,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       setLoading(true);
 
       const { data } = await axios.get(
-        `${backendAPI.API_BASE_URL}/message/${selectedChat._id}`,
+        `${API_BASE_URL}/api/message/${selectedChat._id}`,
         config
       );
 
@@ -109,7 +110,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          `${backendAPI.API_BASE_URL}/message`,
+          `${API_BASE_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat._id,

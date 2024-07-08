@@ -8,7 +8,7 @@ import ChatLoading from "../components/ChatLoading";
 import { getSender } from "../config/ChatLogic";
 import { GroupChatModal } from "./Miscellaneous/GroupChatModal";
 import backendAPI from "../backendAPI";
-
+const API_BASE_URL = process.env.API_BASE_URL;
 const MyChats = ({ fetchAgain }) => {
   const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
   const [loggedUser, setLoggedUser] = useState(null);
@@ -23,7 +23,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get(`${backendAPI.API_BASE_URL}/chat`, config);
+      const { data } = await axios.get(`${API_BASE_URL}/api/chat`, config);
       console.log(data);
       setChats(data);
     } catch (error) {

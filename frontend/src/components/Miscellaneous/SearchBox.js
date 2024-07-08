@@ -30,7 +30,7 @@ import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
 import backendAPI from "../../backendAPI";
-
+const API_BASE_URL = process.env.API_BASE_URL;
 const SearchBox = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -73,7 +73,7 @@ const SearchBox = () => {
           authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`${backendAPI.API_BASE_URL}/user?search=${search}`, config);
+      const { data } = await axios.get(`${API_BASE_URL}/api/user?search=${search}`, config);
 
       setSearchResult(data);
       setLoading(false);
@@ -101,7 +101,7 @@ const SearchBox = () => {
       };
 
 
-      const { data } = await axios.post(`${backendAPI.API_BASE_URL}/chat`, { userId }, config);
+      const { data } = await axios.post(`${API_BASE_URL}/api/chat`, { userId }, config);
 
       if(!chats.find((c) => c._id === data._id))
       setChats([data, ...chats]);

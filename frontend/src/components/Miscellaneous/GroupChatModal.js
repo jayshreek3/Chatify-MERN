@@ -6,7 +6,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserListItem from "../UserAvatar/UserListItem"
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
 import backendAPI from '../../backendAPI';
-
+const API_BASE_URL = process.env.API_BASE_URL;
 export const GroupChatModal = ({children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -47,7 +47,7 @@ export const GroupChatModal = ({children}) => {
           authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`${backendAPI.API_BASE_URL}/user?search=${search}`, config);
+      const { data } = await axios.get(`${API_BASE_URL}/api/user?search=${search}`, config);
     
       setLoading(false);
       setSearchResult(data);
@@ -86,7 +86,7 @@ export const GroupChatModal = ({children}) => {
         },
       };
       const { data } = await axios.post(
-        `${backendAPI.API_BASE_URL}/chat/group`,
+        `${API_BASE_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),
