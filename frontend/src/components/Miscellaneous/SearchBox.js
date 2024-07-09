@@ -29,7 +29,7 @@ import {
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
-const API_BASE_URL = process.env.API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const SearchBox = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);

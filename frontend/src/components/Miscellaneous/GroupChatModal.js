@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserListItem from "../UserAvatar/UserListItem"
 import UserBadgeItem from '../UserAvatar/UserBadgeItem';
-const API_BASE_URL = process.env.API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export const GroupChatModal = ({children}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()

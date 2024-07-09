@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-const API_BASE_URL = process.env.API_BASE_URL;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const Login = () => {
 
   const [email, setEmail] = useState();
@@ -51,7 +51,7 @@ const Login = () => {
         { email, password },
         config
       );
-
+      console.log("API_BASE_URL:", API_BASE_URL);
       toast({
         title: "Login Successful",
         status: "success",

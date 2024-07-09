@@ -22,12 +22,12 @@ connectDB();
 // CORS Configuration
 const allowedOrigins = [
   "*",
-  "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
-  "https://chatify-io-ten.vercel.app",
   "http://localhost:3000",
   "https://chatify-mern-5fao.onrender.com",
   "https://chatify-mern-5fao.onrender.com/api",
-  "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app",
+  "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
+  "https://chatify-818itg7se-jayshree-s-projects.vercel.app",
+  "https://chatify-io-rho.vercel.app"
 ];
 
 const corsOptions = {
@@ -77,8 +77,8 @@ const io = require("socket.io")(server, {
       allowedOrigins,
       "http://localhost:3000",
       "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
-      "https://chatify-io-ten.vercel.app",
-      "https://chatify-lnzgj0x3j-jayshree-s-projects.vercel.app",
+      "https://chatify-818itg7se-jayshree-s-projects.vercel.app",
+      "https://chatify-io-rho.vercel.app"
     ],
   },
 });
