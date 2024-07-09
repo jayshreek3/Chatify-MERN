@@ -9,61 +9,48 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
-const BASE_URL = process.env.BASE_URL || "http://localhost:5000";
+const path = require("path");
+
 // Load environment variables
 dotenv.config();
 
+// Connect to MongoDB
+connectDB();
 // Initialize Express app
 app.use(express.json());
 
-// Connect to MongoDB
-connectDB();
+app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/message", messageRoutes);
 
-// CORS Configuration
-const allowedOrigins = [
-  "*",
-  "http://localhost:3000",
-  "https://chatify-mern-5fao.onrender.com",
-  "https://chatify-mern-5fao.onrender.com/api",
-  "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
-  "https://chatify-818itg7se-jayshree-s-projects.vercel.app",
-  "https://chatify-io-rho.vercel.app"
-];
+// ==========================deployemnt-----============================
+const __dirname1 = path.resolve();
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg =
-        "The CORS policy for this site does not allow access from the specified Origin.";
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "authorization"],
-};
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-app.use(cors(corsOptions));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running..");
+  });
+}
+// ==========================deployemnt-----============================
+
+// Error handling middleware
+app.use(notFound);
+app.use(errorHandler);
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to Chatify API"); // Example response
 });
 
-// app.use("/api/user", userRoutes);
-// app.use("/api/chat", chatRoutes);
-// app.use("/api/message", messageRoutes);
-// Routes
-
-app.use(`${BASE_URL}/api/user`, userRoutes);
-app.use(`${BASE_URL}/api/chat`, chatRoutes);
-app.use(`${BASE_URL}/api/message`, messageRoutes);
-// Error handling middleware
-app.use(notFound);
-app.use(errorHandler);
-
 // Start server
-const PORT = process.env.PORT || "http://localhost:5000";
+const PORT = process.env.PORT;
+
 const server = app.listen(
   PORT,
   console.log(`Server started on port ${PORT}`.blue.italic)
@@ -73,13 +60,7 @@ const io = require("socket.io")(server, {
   pingTimeout: 60000,
 
   cors: {
-    origin: [
-      allowedOrigins,
-      "http://localhost:3000",
-      "https://chatify-io-git-master-jayshree-s-projects.vercel.app",
-      "https://chatify-818itg7se-jayshree-s-projects.vercel.app",
-      "https://chatify-io-rho.vercel.app"
-    ],
+    origin: "http://localhost:3000",
   },
 });
 
